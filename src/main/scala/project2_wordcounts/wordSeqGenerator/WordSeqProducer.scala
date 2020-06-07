@@ -19,19 +19,19 @@ import org.apache.kafka.clients.producer.ProducerRecord
         3. 关闭:  sh kafka-server-stop.sh
                   sh zookeeper-server-stop.sh
 
-   创建主题: bin/kafka-topics.sh --create --zookeeper localhost:2181  --replication-factor 3  --partitions 3 --topic  comments
-   主题列表:  bin/kafka-topics.sh --list --zookeeper localhost:2181
-   查看主题中消息详情: bin/kafka-topics.sh --describe --zookeeper localhost:2181    --topic comments
-   发送消息: bin/kafka-console-producer.sh --broker-list localhost:9092,localhost:9093,localhost:9094 --topic comments
+   创建主题: bin/kafka-topics.sh --create --zookeeper node1:2181,node2:2181,node3:2181  --replication-factor 3  --partitions 3 --topic  comments
+   主题列表:  bin/kafka-topics.sh --list --zookeeper node1:2181,node2:2181,node3:2181
+   查看主题中消息详情: bin/kafka-topics.sh --describe --zookeeper node1:2181,node2:2181,node3:2181    --topic comments
+   发送消息: bin/kafka-console-producer.sh --broker-list node1:9092,node2:9092,node3:9092 --topic comments
    消费消息:
-     bin/kafka-console-consumer.sh --bootstrap-server localhost:9092,localhost:9093,localhost:9094  --topic   comments  --from-beginning
+     bin/kafka-console-consumer.sh --bootstrap-server node1:9092,node2:9092,node3:9092  --topic   comments  --from-beginning
 
 
  */
 object WordSeqProducer extends App{
     val events = 1000    //生成评论条数
     val topic = "comments"
-    val brokers = "localhost:9092,localhost:9093,localhost:9094"
+    val brokers = "node1:9092,node2:9092,node3:9092"
     val rnd = new Random()
     val props = new Properties()
     props.put("bootstrap.servers", brokers)

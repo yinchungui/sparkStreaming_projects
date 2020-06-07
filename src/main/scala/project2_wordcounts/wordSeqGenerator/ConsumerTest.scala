@@ -13,7 +13,7 @@ import scala.collection.JavaConversions._
  */
 object ConsumerTest extends App {
   val topic = "comments"
-  val brokers = "localhost:9092,localhost:9093,localhost:9094"
+  val brokers = "node1:9092,node2:9092,node3:9092"
   val groupId="yc74streaming"
   val example = new ConsumerTest(  brokers, groupId, topic)
   example.run()
