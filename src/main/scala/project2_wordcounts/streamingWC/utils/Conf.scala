@@ -13,7 +13,7 @@ object Conf {
 
   // spark 参数
   val master = "local[*]"
-  val localDir = "//Users/yingzhang/Desktop/data/tmp"
+  val localDir = "E:\\testdata"
   val perMaxRate = "5"
   val interval = 3 // seconds
   val parallelNum = "15"
